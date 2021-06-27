@@ -1,30 +1,38 @@
-import React, { useState, useCallback } from "react";
-import { Canvas } from "./components/Canvas";
-import { Goo } from "./components/Goo";
-import { Intro } from "./components/Intro";
-import { Toolbar } from "./components/Toolbar";
-import { usePainter } from "./hooks/usePainter";
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Paint from './components/PaintApp/Paint'
+
+const styles = {
+    width: "100%",
+    height: "100%",
+    background: "darkcyan"
+}
 
 const App = () => {
-  const [dateUrl, setDataUrl] = useState("#");
-  const [{ canvas, isReady, ...state }, { init, ...api }] = usePainter();
-
-  const handleDownload = useCallback(() => {
-    if (!canvas || !canvas.current) return;
-
-    setDataUrl(canvas.current.toDataURL("image/png"));
-  }, [canvas]);
-
-  const toolbarProps = { ...state, ...api, dateUrl, handleDownload };
-
-  return (
-    <>
-      <Intro isReady={isReady} init={init} />
-      <Toolbar {...toolbarProps} />
-      <Canvas width={state.currentWidth} canvasRef={canvas} />
-      <Goo />
-    </>
-  );
+    return (
+        <div style={{width: "100%"}}>
+            <div className="row" style={{width: "100%", margin: "0"}}>
+                <div className="col-sm-12" style={{padding: "0", height: "10%"}}>
+                    <div style={styles}>
+                        <span style={{color: "#fff",
+                            padding: "15px",
+                            display: "block",
+                            fontSize: "30px",
+                            fontFamily: "cursive",
+                            cursor: "pointer"}}>
+                            Social Network
+                        </span>
+                    </div>
+                </div>
+                {/* PaintApp here... */}
+                <div className="col-sm-12" style={{padding: "0"}}>
+                    <div style={{display: "flex"}}>
+                        <Paint />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default App;

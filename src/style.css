@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  min-width: 1100px;
+  min-width: 100vh;
   color: var(--color-text);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
@@ -59,7 +59,7 @@ aside {
 }
 
 aside > div:first-of-type {
-  flex-grow: 1;
+  flex-grow: 0;
 }
 
 main {
